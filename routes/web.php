@@ -14,6 +14,25 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/test','TestController@index');
 Route::get('/token','TestController@getAccessToken');
 Route::get('/token2','TestController@getAccessToken2');
+Route::get('/token3','TestController@getAccessToken3');
+Route::get('/user/info','TestController@userInfo');
+Route::get('/test','TestController@index');
+//Route::post('/login','TestController@login');
+Route::post('/user/reg','TestController@reg');
+Route::post('/user/login','TestController@login');
+Route::get('/user/center','TestController@center')->middleware('check.token','user.count');
+
+
+Route::get('/test/hash1','TestController@hash1');
+Route::get('/test/hash2','TestController@hash2');
+Route::get('/test1','TestController@test1');
+Route::get('/test2','TestController@test2');
+Route::get('/goods','TestController@goods');
+Route::post('/encrypt','TestController@encrypt');
+
+Route::get('/test/rsa','TestController@rsaEncrypt');
+Route::get('/test/sign','TestController@sign');
+Route::get('/test/rsaSign','TestController@rsaSign');
+Route::post('/test/rsaPostSign','TestController@rsaPostSign');
