@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+//    var xhr=new XMLHttpRequest();
+//    xhr.onreadystatechange=function(){
+//        if(xhr.readyState==4&&xhr.status==200){
+//            var response=xhr.responseText;
+//            console.log(typeof response);
+//            response=JSON.parse(response);
+//            console.log(typeof response);
+//            console.log(response);
+//            if(response.errno>0){
+//                alert('失败');
+//            }else{
+//                alert(response.msg);
+//            }
+//        }
+//    }
+//    xhr.open('get','/ajax.php');
+//    xhr.send();
+//    alert(222);
+    var xhr=new XMLHttpRequest();
+    xhr.onreadystatechange=function(){
+        if(xhr.readyState==4&&xhr.status==200) {
+            var response=xhr.responseText;
+            console.log(response.length);
+            response=JSON.parse(response);
+            if(response.errno>0){
+                alert('出错了');
+            }else{
+                alert(response.msg);
+            }
+        }
+    }
+    xhr.open('get','/ajax.php');
+    xhr.send();
+</script>
+</body>
+</html>

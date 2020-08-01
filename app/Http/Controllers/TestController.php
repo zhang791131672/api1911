@@ -311,5 +311,30 @@ class TestController extends Controller
         $res=openssl_verify($data,$sign,openssl_get_publickey(file_get_contents(storage_path().'/key/pub.key')));
         echo $res;
     }
+
+    public function aesSign(Request $request){
+        $data=$request->post('data');
+        $data=base64_decode($data);
+        $sign=$request->post('sign');
+        $sign=base64_decode($sign);
+        $pub_key=file_get_contents(storage_path().'/key/pub.key');
+        $pub_key=openssl_get_publickey($pub_key);
+        $res=openssl_verify($data,$sign,$pub_key);
+        if($res!=1){
+            echo "验签失败";
+        }else{
+            $key='1911';
+            $iv='1234567891234567';
+            $data=openssl_decrypt($data,'AES-256-CBC',$key,OPENSSL_RAW_DATA,$iv);
+            echo $data;
+        }
+    }
+    public function header(){
+        if(isset($_SERVER['HTTP_UID'])){
+            echo 'uid为'.$_SERVER['HTTP_UID'];
+        }else{
+            echo "失败";
+        }
+    }
 }
 

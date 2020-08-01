@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $.ajax({
+            url:'http://www.1911.com/api',
+            type:'get',
+            dataType:'json',
+            success:function(res){
+                console.log(typeof res);
+                console.log(res);
+                if(res.errno>0){
+                    alert('出现错误了');
+                }else{
+                    alert(res.msg);
+                }
+            }
+        })
+    });
+</script>
+</body>
+</html>

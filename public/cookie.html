@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script src="jquery.min.js"></script>
+<script>
+    /**
+     * js设置cookie
+     * @type {number}
+     */
+//    document.cookie='name=zhangsan';
+//    document.cookie='age=22';
+    var uid=999999999;
+    $.ajax({
+        url:'/cookie.php',
+        type:'get',
+        dataType:'json',
+        //通过ajax发送headers头部字段数据
+        headers:{'uid':uid},
+        success:function(res){
+            console.log(res);
+        }
+    })
+</script>
+</body>
+</html>
